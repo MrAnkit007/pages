@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Europe Family Adventure — 22 Days</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #fffdf9;
+      --ink: #1c1611;
+      --ink-light: #5c5047;
+      --ink-muted: #9c8f83;
+      --border: #e8e0d6;
+      --bcn: #c47a3a;
+      --lon: #6b4a2a;
+      --par: #b59040;
+      --vie: #8a4a4a;
+      --luc: #4a7a6a;
+      --rom: #b05a42;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── STICKY NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      transition: color 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    nav a .material-icons-round { font-size: 14px; }
+    nav a:hover, nav a.active { color: #fff; }
+    nav a.active { border-bottom: 2px solid #fff; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 70vw;
+      max-height: 560px;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(24px, 6vw, 60px);
+      background: linear-gradient(to top, rgba(28,22,17,0.95) 0%, transparent 100%);
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .hero-route {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      color: rgba(255,255,255,0.7);
+      font-size: clamp(0.78rem, 2.2vw, 0.92rem);
+      font-weight: 400;
+    }
+    .hero-route .city-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 99px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.78rem;
+    }
+    .hero-route .material-icons-round { font-size: 14px; opacity: 0.5; }
+    .hero-stats {
+      display: flex;
+      gap: clamp(20px, 5vw, 48px);
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+
+    /* ─── SECTION LAYOUT ─── */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(32px, 6vw, 64px) clamp(16px, 5vw, 40px);
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    /* ─── OVERVIEW CARDS ─── */
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .city-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .city-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,22,17,0.1); }
+    .city-card-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .city-card-body { padding: 18px; }
+    .city-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .city-card-country {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+      margin-bottom: 12px;
+    }
+    .city-card-tagline {
+      font-size: 0.84rem;
+      color: var(--ink-light);
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .city-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .night-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--cream);
+      color: var(--ink-light);
+    }
+    .night-badge .material-icons-round { font-size: 13px; }
+
+    /* ─── ROUTE MAP STRIP ─── */
+    .route-strip {
+      background: var(--ink);
+      padding: 28px clamp(16px, 5vw, 40px);
+      overflow-x: auto;
+    }
+    .route-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: 520px;
+    }
+    .route-city-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .route-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 3px solid rgba(255,255,255,0.15);
+    }
+    .route-city-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      text-align: center;
+    }
+    .route-connector {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 0 8px;
+    }
+    .route-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+    .route-transport {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+    }
+    .route-transport .material-icons-round { font-size: 11px; }
+
+    /* ─── CITY SECTION HEADER ─── */
+    .city-section {
+      scroll-margin-top: 48px;
+    }
+    .city-banner {
+      position: relative;
+      height: clamp(200px, 45vw, 380px);
+      overflow: hidden;
+    }
+    .city-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .city-banner-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(20px, 5vw, 40px);
+      background: linear-gradient(to top, rgba(28,22,17,0.85) 0%, rgba(28,22,17,0.1) 60%, transparent 100%);
+    }
+    .city-banner-text { color: #fff; }
+    .city-banner-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 6px;
+    }
+    .city-banner-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 6vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.0;
+    }
+    .city-banner-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .chip {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      white-space: nowrap;
+    }
+    .city-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 48px) clamp(16px, 5vw, 40px);
+    }
+    .city-intro {
+      font-size: clamp(0.92rem, 2.5vw, 1.05rem);
+      color: var(--ink-light);
+      line-height: 1.7;
+      border-left: 3px solid var(--border);
+      padding-left: 18px;
+      margin-bottom: 36px;
+    }
+
+    /* ─── META PILLS ROW ─── */
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      color: var(--ink);
+    }
+    .meta-pill .material-icons-round { font-size: 15px; color: var(--ink-muted); }
+
+    /* ─── SUBSECTION HEADING ─── */
+    .sub-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-heading .material-icons-round { font-size: 18px; color: var(--ink-muted); }
+
+    /* ─── ATTRACTIONS ─── */
+    .attractions-list { display: flex; flex-direction: column; gap: 10px; }
+    .attraction-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px 16px;
+      align-items: start;
+    }
+    .attraction-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink);
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .attraction-desc {
+      font-size: 0.83rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .attraction-tags {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-end;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: var(--cream);
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+    .tag .material-icons-round { font-size: 11px; }
+
+    /* ─── INFO BOXES ─── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .info-box {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .info-box-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+    .info-box-head .material-icons-round { font-size: 17px; }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row-label { color: var(--ink-muted); white-space: nowrap; }
+    .info-row-val { color: var(--ink); font-weight: 500; text-align: right; }
+
+    /* ─── RESTAURANTS ─── */
+    .restaurant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .restaurant-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .restaurant-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .restaurant-name .material-icons-round { font-size: 15px; color: var(--ink-muted); }
+    .restaurant-desc {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      line-height: 1.45;
+    }
+
+    /* ─── BUDGET TABLE ─── */
+    .budget-table-wrap {
+      overflow-x: auto;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    table.budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.87rem;
+    }
+    table.budget-table thead th {
+      background: var(--cream);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    table.budget-table thead th:last-child { text-align: right; }
+    table.budget-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    table.budget-table tbody tr:last-child td { border-bottom: none; }
+    table.budget-table tbody td:last-child { text-align: right; font-weight: 600; }
+    table.budget-table .total-row {
+      background: var(--cream);
+      font-weight: 700;
+    }
+    table.budget-table .total-row td { border-top: 2px solid var(--border); }
+
+    /* ─── DIVIDER ─── */
+    .city-divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ─── MAP EMBED ─── */
+    .map-embed {
+      width: 100%;
+      height: clamp(200px, 50vw, 340px);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* ─── CHECKLIST ─── */
+    .checklist-section { background: var(--warm-white); }
+    .checklist-group { margin-bottom: 28px; }
+    .checklist-group-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .checklist-group-title .material-icons-round { font-size: 17px; color: var(--ink-muted); }
+    .checklist-items { display: flex; flex-direction: column; gap: 6px; }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--cream);
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .checklist-item:hover { border-color: var(--border); background: #fff; }
+    .checklist-item.checked {
+      opacity: 0.55;
+      background: var(--cream);
+    }
+    .checklist-item.checked label { text-decoration: line-through; color: var(--ink-muted); }
+    .checklist-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--ink);
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .checklist-item label {
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.45;
+      cursor: pointer;
+    }
+
+    /* ─── BUDGET SUMMARY ─── */
+    .budget-summary {
+      background: var(--ink);
+      color: #fff;
+    }
+    .budget-summary .section-title { color: #fff; }
+    .budget-summary .section-label { color: rgba(255,255,255,0.45); }
+    .budget-grand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .budget-city-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .budget-city-name {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 6px;
+    }
+    .budget-city-amt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    .budget-city-nights {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+    }
+    .budget-grand-total {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .budget-grand-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .budget-grand-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+    }
+    .budget-tips {
+      margin-top: 24px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .budget-tip-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .budget-tip-row:last-child { border-bottom: none; }
+    .budget-tip-row .material-icons-round { font-size: 15px; color: rgba(255,255,255,0.35); flex-shrink: 0; margin-top: 2px; }
+
+    /* ─── TIPS SECTION ─── */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+      gap: 14px;
+    }
+    .tip-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .tip-card-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .tip-card-head .material-icons-round { font-size: 18px; color: var(--ink-muted); }
+    .tip-card p {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.55;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 0.78rem;
+    }
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ─── ACCENT BORDERS per city ─── */
+    .accent-bcn { border-color: var(--bcn); }
+    .accent-lon { border-color: var(--lon); }
+    .accent-par { border-color: var(--par); }
+    .accent-vie { border-color: var(--vie); }
+    .accent-luc { border-color: var(--luc); }
+    .accent-rom { border-color: var(--rom); }
+
+    .color-bcn { color: var(--bcn); }
+    .color-lon { color: var(--lon); }
+    .color-par { color: var(--par); }
+    .color-vie { color: var(--vie); }
+    .color-luc { color: var(--luc); }
+    .color-rom { color: var(--rom); }
+
+    .bg-bcn { background: var(--bcn); }
+    .bg-lon { background: var(--lon); }
+    .bg-par { background: var(--par); }
+    .bg-vie { background: var(--vie); }
+    .bg-luc { background: var(--luc); }
+    .bg-rom { background: var(--rom); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .attraction-card {
+        grid-template-columns: 1fr;
+      }
+      .attraction-tags {
+        grid-column: 1;
+        grid-row: 3;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      nav a span:not(.material-icons-round) { display: none; }
+      nav a { padding: 14px 12px; }
+    }
+
+    @media print {
+      nav { display: none; }
+      .hero { max-height: none; }
+      .map-embed { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── STICKY NAV ─── -->
+<nav id="top-nav">
+  <a href="#overview"><span class="material-icons-round">map</span><span>Overview</span></a>
+  <a href="#barcelona"><span class="material-icons-round">wb_sunny</span><span>Barcelona</span></a>
+  <a href="#london"><span class="material-icons-round">location_city</span><span>London</span></a>
+  <a href="#paris"><span class="material-icons-round">castle</span><span>Paris</span></a>
+  <a href="#vienna"><span class="material-icons-round">account_balance</span><span>Vienna</span></a>
+  <a href="#lucerne"><span class="material-icons-round">terrain</span><span>Lucerne</span></a>
+  <a href="#rome"><span class="material-icons-round">local_pizza</span><span>Rome</span></a>
+  <a href="#checklist"><span class="material-icons-round">checklist</span><span>Checklist</span></a>
+  <a href="#budget"><span class="material-icons-round">payments</span><span>Budget</span></a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1400&auto=format&fit=crop&q=80" alt="Europe" loading="eager">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Family of 4 · June 2025 · Australia → Europe → Home</p>
+    <h1>Europe<br>Family Adventure</h1>
+    <div class="hero-route">
+      <span class="city-pill">Barcelona</span>
+      <span class="material-icons-round">arrow_forward</span>
+      <span class="city-pill">London</span>
+      <span class="material-icons-round">arrow_forward</span>
+      <span class="city-pill">Paris</span>
+      <span class="material-icons-round">arrow_forward</span>
+      <span class="city-pill">Vienna</span>
+      <span class="material-icons-round">arrow_forward</span>
+      <span class="city-pill">Lucerne</span>
+      <span class="material-icons-round">arrow_forward</span>
+      <span class="city-pill">Rome</span>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">22</div>
+        <div class="hero-stat-label">Days</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">6</div>
+        <div class="hero-stat-label">Cities</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">4</div>
+        <div class="hero-stat-label">Currencies</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">~$21k</div>
+        <div class="hero-stat-label">Est. Budget</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── ROUTE STRIP ─── -->
+<div class="route-strip">
+  <div class="route-inner">
+    <div class="route-city-node">
+      <div class="route-dot bg-bcn">BCN</div>
+      <div class="route-city-label">Barcelona<br>Days 1–3</div>
+    </div>
+    <div class="route-connector">
+      <div class="route-transport"><span class="material-icons-round">flight</span>2 hrs</div>
+      <div class="route-line"></div>
+    </div>
+    <div class="route-city-node">
+      <div class="route-dot bg-lon">LHR</div>
+      <div class="route-city-label">London<br>Days 4–7</div>
+    </div>
+    <div class="route-connector">
+      <div class="route-transport"><span class="material-icons-round">train</span>2.5 hrs</div>
+      <div class="route-line"></div>
+    </div>
+    <div class="route-city-node">
+      <div class="route-dot bg-par">CDG</div>
+      <div class="route-city-label">Paris<br>Days 8–10</div>
+    </div>
+    <div class="route-connector">
+      <div class="route-transport"><span class="material-icons-round">flight</span>2.5 hrs</div>
+      <div class="route-line"></div>
+    </div>
+    <div class="route-city-node">
+      <div class="route-dot bg-vie">VIE</div>
+      <div class="route-city-label">Vienna<br>Days 11–13</div>
+    </div>
+    <div class="route-connector">
+      <div class="route-transport"><span class="material-icons-round">train</span>4 hrs</div>
+      <div class="route-line"></div>
+    </div>
+    <div class="route-city-node">
+      <div class="route-dot bg-luc">LUZ</div>
+      <div class="route-city-label">Lucerne<br>Days 14–17</div>
+    </div>
+    <div class="route-connector">
+      <div class="route-transport"><span class="material-icons-round">flight</span>1.5 hrs</div>
+      <div class="route-line"></div>
+    </div>
+    <div class="route-city-node">
+      <div class="route-dot bg-rom">FCO</div>
+      <div class="route-city-label">Rome<br>Days 18–22</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── OVERVIEW ─── -->
+<section id="overview" class="city-section">
+  <div class="section">
+    <p class="section-label">Your Journey</p>
+    <h2 class="section-title">Six Cities, One Epic Adventure</h2>
+    <p style="color:var(--ink-light);font-size:0.95rem;margin-bottom:28px;max-width:560px;">An expertly-curated journey through Europe's most iconic cities, designed for families. Each stop balances must-see sights with kid-friendly pacing and unforgettable moments.</p>
+
+    <div class="city-grid">
+      <!-- Barcelona -->
+      <a href="#barcelona" class="city-card" style="border-top:3px solid var(--bcn);">
+        <img class="city-card-img" src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&auto=format&fit=crop&q=75" alt="Sagrada Familia Barcelona" loading="lazy">
+        <div class="city-card-body">
+          <div class="city-card-name">Barcelona</div>
+          <div class="city-card-country">Spain</div>
+          <div class="city-card-tagline">Gaudí's architectural wonders and Mediterranean beaches</div>
+          <div class="city-card-meta">
+            <span class="night-badge"><span class="material-icons-round">hotel</span>3 nights</span>
+            <span class="night-badge" style="color:var(--bcn);">Days 1–3</span>
+          </div>
+        </div>
+      </a>
+      <!-- London -->
+      <a href="#london" class="city-card" style="border-top:3px solid var(--lon);">
+        <img class="city-card-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&auto=format&fit=crop&q=75" alt="Tower Bridge London" loading="lazy">
+        <div class="city-card-body">
+          <div class="city-card-name">London</div>
+          <div class="city-card-country">United Kingdom</div>
+          <div class="city-card-tagline">History, magic, and iconic royal traditions</div>
+          <div class="city-card-meta">
+            <span class="night-badge"><span class="material-icons-round">hotel</span>4 nights</span>
+            <span class="night-badge" style="color:var(--lon);">Days 4–7</span>
+          </div>
+        </div>
+      </a>
+      <!-- Paris -->
+      <a href="#paris" class="city-card" style="border-top:3px solid var(--par);">
+        <img class="city-card-img" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop&q=75" alt="Eiffel Tower Paris" loading="lazy">
+        <div class="city-card-body">
+          <div class="city-card-name">Paris</div>
+          <div class="city-card-country">France</div>
+          <div class="city-card-tagline">The City of Light: Eiffel Tower, art, and Disneyland</div>
+          <div class="city-card-meta">
+            <span class="night-badge"><span class="material-icons-round">hotel</span>3 nights</span>
+            <span class="night-badge" style="color:var(--par);">Days 8–10</span>
+          </div>
+        </div>
+      </a>
+      <!-- Vienna -->
+      <a href="#vienna" class="city-card" style="border-top:3px solid var(--vie);">
+        <img class="city-card-img" src="https://images.unsplash.com/photo-1516550135131-fe3dcb0bedc4?w=600&auto=format&fit=crop&q=75" alt="Schonbrunn Palace Vienna" loading="lazy">
+        <div class="city-card-body">
+          <div class="city-card-name">Vienna</div>
+          <div class="city-card-country">Austria</div>
+          <div class="city-card-tagline">Imperial palaces, world-class zoo, and elegant cafes</div>
+          <div class="city-card-meta">
+            <span class="night-badge"><span class="material-icons-round">hotel</span>3 nights</span>
+            <span class="night-badge" style="color:var(--vie);">Days 11–13</span>
+          </div>
+        </div>
+      </a>
+      <!-- Lucerne -->
+      <a href="#lucerne" class="city-card" style="border-top:3px solid var(--luc);">
+        <img class="city-card-img" src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=600&auto=format&fit=crop&q=75" alt="Lucerne Swiss Alps" loading="lazy">
+        <div class="city-card-body">
+          <div class="city-card-name">Lucerne</div>
+          <div class="city-card-country">Switzerland</div>
+          <div class="city-card-tagline">Alpine peaks, pristine lakes, and mountain railways</div>
+          <div class="city-card-meta">
+            <span class="night-badge"><span class="material-icons-round">hotel</span>4 nights</span>
+            <span class="night-badge" style="color:var(--luc);">Days 14–17</span>
+          </div>
+        </div>
+      </a>
+      <!-- Rome -->
+      <a href="#rome" class="city-card" style="border-top:3px solid var(--rom);">
+        <img class="city-card-img" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&auto=format&fit=crop&q=75" alt="Colosseum Rome" loading="lazy">
+        <div class="city-card-body">
+          <div class="city-card-name">Rome</div>
+          <div class="city-card-country">Italy</div>
+          <div class="city-card-tagline">Ancient ruins, Vatican treasures, and world-class cuisine</div>
+          <div class="city-card-meta">
+            <span class="night-badge"><span class="material-icons-round">hotel</span>5 nights</span>
+            <span class="night-badge" style="color:var(--rom);">Days 18–22</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ BARCELONA ═══════════════════════════ -->
+<section id="barcelona" class="city-section">
+  <div class="city-banner">
+    <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&auto=format&fit=crop&q=80" alt="Sagrada Familia Barcelona" loading="lazy">
+    <div class="city-banner-overlay">
+      <div class="city-banner-text">
+        <div class="city-banner-eyebrow">Days 1–3 · Spain</div>
+        <div class="city-banner-title">Barcelona</div>
+        <div class="city-banner-chips">
+          <span class="chip">Sagrada Família</span>
+          <span class="chip">Park Güell</span>
+          <span class="chip">Barceloneta Beach</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-body">
+    <div class="meta-row">
+      <span class="meta-pill"><span class="material-icons-round">calendar_today</span>Days 1–3</span>
+      <span class="meta-pill"><span class="material-icons-round">hotel</span>3 nights</span>
+      <span class="meta-pill"><span class="material-icons-round">euro</span>Currency: Euro</span>
+      <span class="meta-pill"><span class="material-icons-round">language</span>Spanish / Catalan</span>
+    </div>
+    <p class="city-intro">Welcome to Catalonia! Barcelona offers stunning architecture, beautiful beaches, and vibrant culture — perfect for kicking off your adventure. The city is compact and walkable, with excellent public transport connecting family-friendly attractions.</p>
+
+    <div class="sub-heading"><span class="material-icons-round">place</span>Top Attractions</div>
+    <div class="attractions-list">
+      <div class="attraction-card"><div class="attraction-name">Sagrada Família</div><div class="attraction-desc">Gaudí's masterpiece basilica with breathtaking stained glass and soaring spires. Book tickets online to skip queues.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm</span>9:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Park Güell</div><div class="attraction-desc">Whimsical mosaic wonderland with city panoramas. Kids love the colourful tiles and open spaces for running around.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm</span>10:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Barceloneta Beach</div><div class="attraction-desc">Mediterranean sandy beach. Perfect for swimming, relaxing, and family beach time. Lifeguards on duty in summer.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–4 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Afternoon</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Montjuïc Cable Car & Castle</div><div class="attraction-desc">Scenic cable car ride with panoramic city views. Historic fortress with gardens overlooking the entire city.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">3:00 PM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">CosmoCaixa Science Museum</div><div class="attraction-desc">Interactive science museum designed for curious young minds. Hands-on exhibits, Amazon rainforest replica. Highly rated by families.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 4+</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">info</span>Logistics</div>
+    <div class="info-grid">
+      <div class="info-box" style="border-left:3px solid var(--bcn);">
+        <div class="info-box-head" style="color:var(--bcn);"><span class="material-icons-round">hotel</span>Where to Stay</div>
+        <div class="info-row"><span class="info-row-label">Type</span><span class="info-row-val">4-star or family apt</span></div>
+        <div class="info-row"><span class="info-row-label">Area</span><span class="info-row-val">Eixample / Gothic Quarter</span></div>
+        <div class="info-row"><span class="info-row-label">Cost</span><span class="info-row-val">€300–400 / night</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--bcn);">
+        <div class="info-box-head" style="color:var(--bcn);"><span class="material-icons-round">flight_takeoff</span>Getting Here</div>
+        <div class="info-row"><span class="info-row-label">From</span><span class="info-row-val">Sydney (SYD)</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">14–16 hrs (1 stop)</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$1,200–$1,800</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--bcn);">
+        <div class="info-box-head" style="color:var(--bcn);"><span class="material-icons-round">flight_land</span>Next: London</div>
+        <div class="info-row"><span class="info-row-label">Transport</span><span class="info-row-val">Flight</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~2 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$80–$150</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">restaurant</span>Recommended Restaurants</div>
+    <div class="restaurant-grid">
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Cervecería Catalana</div><div class="restaurant-desc">Authentic tapas bar in Gothic Quarter. Perfect for sharing small plates. Very family-friendly, lively atmosphere.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Casa Batlló Café</div><div class="restaurant-desc">Elegant café inside Gaudí's Casa Batlló. Great views, modern Spanish cuisine, excellent for brunch.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Quimet & Quimet</div><div class="restaurant-desc">Gourmet sandwich bar with creative ingredients. Small, charming, highly rated. Perfect casual lunch spot.</div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">map</span>Map</div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95818.44671393!2d2.1197!3d41.3851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49816718e30e5%3A0x44b0fb3d4f47660a!2sBarcelona%2C%20Spain!5e0!3m2!1sen!2sau!4v1" allowfullscreen="" loading="lazy" title="Barcelona Map"></iframe>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">payments</span>Budget Breakdown</div>
+    <div class="budget-table-wrap">
+      <table class="budget-table">
+        <thead><tr><th>Category</th><th>Estimated (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Flights (Sydney → Barcelona)</td><td>$1,200–$1,800</td></tr>
+          <tr><td>Hotels (3 nights @ €300–400/night)</td><td>$1,050–$1,400</td></tr>
+          <tr><td>Attractions & Tours</td><td>$400–$600</td></tr>
+          <tr><td>Food & Dining</td><td>$500–$700</td></tr>
+          <tr><td>Transport</td><td>$100–$150</td></tr>
+          <tr class="total-row"><td><strong>Total — Barcelona</strong></td><td><strong>$3,250–$4,650</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ LONDON ═══════════════════════════ -->
+<section id="london" class="city-section">
+  <div class="city-banner">
+    <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&auto=format&fit=crop&q=80" alt="Tower Bridge London" loading="lazy">
+    <div class="city-banner-overlay">
+      <div class="city-banner-text">
+        <div class="city-banner-eyebrow">Days 4–7 · United Kingdom</div>
+        <div class="city-banner-title">London</div>
+        <div class="city-banner-chips">
+          <span class="chip">Tower of London</span>
+          <span class="chip">Harry Potter Studio</span>
+          <span class="chip">London Eye</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-body">
+    <div class="meta-row">
+      <span class="meta-pill"><span class="material-icons-round">calendar_today</span>Days 4–7</span>
+      <span class="meta-pill"><span class="material-icons-round">hotel</span>4 nights</span>
+      <span class="meta-pill"><span class="material-icons-round">currency_pound</span>Currency: GBP</span>
+      <span class="meta-pill"><span class="material-icons-round">language</span>English</span>
+    </div>
+    <p class="city-intro">London is pure magic for families. From the Tower of London's Crown Jewels to the enchanting Harry Potter Studio Tour, every corner offers wonder. Excellent public transport and countless kid-friendly attractions make this one of the world's best family destinations.</p>
+
+    <div class="sub-heading"><span class="material-icons-round">place</span>Top Attractions</div>
+    <div class="attractions-list">
+      <div class="attraction-card"><div class="attraction-name">Tower of London</div><div class="attraction-desc">Medieval fortress with Crown Jewels, ravens, and royal history. Book Yeoman Warder tours for incredible storytelling.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>3–4 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">9:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Tower Bridge Exhibition</div><div class="attraction-desc">Climb the bridge bascules, walk the glass floor high above the Thames. Heart-pounding views of London below.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1.5–2 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 4+</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Harry Potter Studio Tour</div><div class="attraction-desc">Original sets, props, costumes, and wand-making. MUST BOOK 6+ weeks ahead. Located at Leavesden (30 min from central London).</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>4–5 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">London Eye</div><div class="attraction-desc">Iconic observation wheel with 360° city views. Book fast-track tickets. Best at sunset for golden-hour photos.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>3 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Late afternoon</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Hyde Park & Diana Playground</div><div class="attraction-desc">Beautiful park with lake, playgrounds, and open spaces. Diana Princess Memorial Playground is exceptional for children.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">info</span>Logistics</div>
+    <div class="info-grid">
+      <div class="info-box" style="border-left:3px solid var(--lon);">
+        <div class="info-box-head" style="color:var(--lon);"><span class="material-icons-round">hotel</span>Where to Stay</div>
+        <div class="info-row"><span class="info-row-label">Type</span><span class="info-row-val">4-star or family apt</span></div>
+        <div class="info-row"><span class="info-row-label">Area</span><span class="info-row-val">Westminster / South Bank</span></div>
+        <div class="info-row"><span class="info-row-label">Cost</span><span class="info-row-val">£300–400 / night</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--lon);">
+        <div class="info-box-head" style="color:var(--lon);"><span class="material-icons-round">flight_takeoff</span>Getting Here</div>
+        <div class="info-row"><span class="info-row-label">From</span><span class="info-row-val">Barcelona (BCN)</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~2 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$80–$150</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--lon);">
+        <div class="info-box-head" style="color:var(--lon);"><span class="material-icons-round">train</span>Next: Paris</div>
+        <div class="info-row"><span class="info-row-label">Transport</span><span class="info-row-val">Eurostar train</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~2.5 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$120–$180</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">restaurant</span>Recommended Restaurants</div>
+    <div class="restaurant-grid">
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>The Ivy Market</div><div class="restaurant-desc">British classics in Covent Garden. Contemporary twist on traditional dishes. Great for families and special occasions.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Dishoom</div><div class="restaurant-desc">Indian restaurant highly rated by families. Casual, friendly vibe, great for groups. Multiple London locations.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Borough Market</div><div class="restaurant-desc">Street food paradise on the South Bank. Fish & chips, crepes, international cuisines. Casual and fun.</div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">map</span>Map</div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.18299!2d-0.24168!3d51.52855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sau!4v1" allowfullscreen="" loading="lazy" title="London Map"></iframe>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">payments</span>Budget Breakdown</div>
+    <div class="budget-table-wrap">
+      <table class="budget-table">
+        <thead><tr><th>Category</th><th>Estimated (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Flights (Barcelona → London)</td><td>$80–$150</td></tr>
+          <tr><td>Hotels (4 nights @ £300–400/night)</td><td>$1,400–$1,900</td></tr>
+          <tr><td>Attractions & Tours</td><td>$600–$900</td></tr>
+          <tr><td>Food & Dining</td><td>$600–$900</td></tr>
+          <tr><td>Transport</td><td>$150–$250</td></tr>
+          <tr class="total-row"><td><strong>Total — London</strong></td><td><strong>$2,830–$4,100</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ PARIS ═══════════════════════════ -->
+<section id="paris" class="city-section">
+  <div class="city-banner">
+    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&auto=format&fit=crop&q=80" alt="Eiffel Tower Paris" loading="lazy">
+    <div class="city-banner-overlay">
+      <div class="city-banner-text">
+        <div class="city-banner-eyebrow">Days 8–10 · France</div>
+        <div class="city-banner-title">Paris</div>
+        <div class="city-banner-chips">
+          <span class="chip">Eiffel Tower</span>
+          <span class="chip">Disneyland Paris</span>
+          <span class="chip">Louvre Museum</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-body">
+    <div class="meta-row">
+      <span class="meta-pill"><span class="material-icons-round">calendar_today</span>Days 8–10</span>
+      <span class="meta-pill"><span class="material-icons-round">hotel</span>3 nights</span>
+      <span class="meta-pill"><span class="material-icons-round">euro</span>Currency: Euro</span>
+      <span class="meta-pill"><span class="material-icons-round">language</span>French</span>
+    </div>
+    <p class="city-intro">The City of Light awaits! Paris is pure enchantment for families — the Eiffel Tower sparkles at night, Disneyland Paris offers a full day of magic, and the Louvre caters to families with special children's tours. Seine cruises, iconic cafés, and gelato moments complete the Parisian dream.</p>
+
+    <div class="sub-heading"><span class="material-icons-round">place</span>Top Attractions</div>
+    <div class="attractions-list">
+      <div class="attraction-card"><div class="attraction-name">Eiffel Tower</div><div class="attraction-desc">Iconic symbol of Paris. Ascend to the summit for 360° city views. Magically illuminated at night — visit at golden hour.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Evening</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Disneyland Paris</div><div class="attraction-desc">Magic Kingdom-style park with attractions, parades, castle. Book fast-track passes. RER A train from central Paris (45 min).</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>Full day</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Arrive 9 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Louvre Museum</div><div class="attraction-desc">World's largest art museum. Book family-focused 2-hour kids' tours. Mona Lisa, Egyptian mummies, incredible sculptures.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>3–4 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 6+</span><span class="tag"><span class="material-icons-round">alarm">9:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Seine River Cruise</div><div class="attraction-desc">Relaxing boat tour past Notre-Dame, Louvre, and bridges. Perfect for weary feet and iconic photos.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1 hr</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Late afternoon</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Luxembourg Gardens</div><div class="attraction-desc">Beautiful Parisian park with toy boat rentals, lawns for picnicking, and that unmistakable Paris charm.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Afternoon</span></div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">info</span>Logistics</div>
+    <div class="info-grid">
+      <div class="info-box" style="border-left:3px solid var(--par);">
+        <div class="info-box-head" style="color:var(--par);"><span class="material-icons-round">hotel</span>Where to Stay</div>
+        <div class="info-row"><span class="info-row-label">Type</span><span class="info-row-val">4-star or family apt</span></div>
+        <div class="info-row"><span class="info-row-label">Area</span><span class="info-row-val">Near Eiffel / Marais</span></div>
+        <div class="info-row"><span class="info-row-label">Cost</span><span class="info-row-val">€350–500 / night</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--par);">
+        <div class="info-box-head" style="color:var(--par);"><span class="material-icons-round">train</span>Getting Here</div>
+        <div class="info-row"><span class="info-row-label">From</span><span class="info-row-val">London (Eurostar)</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~2.5 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$120–$180</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--par);">
+        <div class="info-box-head" style="color:var(--par);"><span class="material-icons-round">flight_land</span>Next: Vienna</div>
+        <div class="info-row"><span class="info-row-label">Transport</span><span class="info-row-val">Flight</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~2.5 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$100–$180</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">restaurant</span>Recommended Restaurants</div>
+    <div class="restaurant-grid">
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>L'Astrance</div><div class="restaurant-desc">Fine dining with modern French cuisine. Elegant setting for special dinners. Reservations essential.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Café de Flore</div><div class="restaurant-desc">Iconic Parisian café in Saint-Germain. Classic bistro fare, beautiful terrace. A must-visit for ambiance.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Les Ombres</div><div class="restaurant-desc">Restaurant with rooftop Eiffel Tower views. Modern French, romantic setting, memorable for families.</div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">map</span>Map</div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.76456!2d2.2769953!3d48.8589507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis%2C%20France!5e0!3m2!1sen!2sau!4v1" allowfullscreen="" loading="lazy" title="Paris Map"></iframe>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">payments</span>Budget Breakdown</div>
+    <div class="budget-table-wrap">
+      <table class="budget-table">
+        <thead><tr><th>Category</th><th>Estimated (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Eurostar Train (London → Paris)</td><td>$120–$180</td></tr>
+          <tr><td>Hotels (3 nights @ €350–500/night)</td><td>$1,170–$1,680</td></tr>
+          <tr><td>Attractions & Tours</td><td>$700–$1,000</td></tr>
+          <tr><td>Food & Dining</td><td>$700–$1,000</td></tr>
+          <tr><td>Transport</td><td>$150–$250</td></tr>
+          <tr class="total-row"><td><strong>Total — Paris</strong></td><td><strong>$2,840–$4,110</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ VIENNA ═══════════════════════════ -->
+<section id="vienna" class="city-section">
+  <div class="city-banner">
+    <img src="https://images.unsplash.com/photo-1516550135131-fe3dcb0bedc4?w=1200&auto=format&fit=crop&q=80" alt="Schonbrunn Palace Vienna" loading="lazy">
+    <div class="city-banner-overlay">
+      <div class="city-banner-text">
+        <div class="city-banner-eyebrow">Days 11–13 · Austria</div>
+        <div class="city-banner-title">Vienna</div>
+        <div class="city-banner-chips">
+          <span class="chip">Schönbrunn Palace</span>
+          <span class="chip">Prater Ferris Wheel</span>
+          <span class="chip">Schönbrunn Zoo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-body">
+    <div class="meta-row">
+      <span class="meta-pill"><span class="material-icons-round">calendar_today</span>Days 11–13</span>
+      <span class="meta-pill"><span class="material-icons-round">hotel</span>3 nights</span>
+      <span class="meta-pill"><span class="material-icons-round">euro</span>Currency: Euro</span>
+      <span class="meta-pill"><span class="material-icons-round">language</span>German</span>
+    </div>
+    <p class="city-intro">Vienna is a hidden gem for families! Imperial palaces, the world's oldest zoo, and the iconic Prater Ferris Wheel create magical memories. The city feels less crowded than other major European capitals, making it perfect for families seeking culture without overwhelming crowds.</p>
+
+    <div class="sub-heading"><span class="material-icons-round">place</span>Top Attractions</div>
+    <div class="attractions-list">
+      <div class="attraction-card"><div class="attraction-name">Schönbrunn Palace</div><div class="attraction-desc">Stunning imperial palace with palace tour and gardens. Kids' museum on-site. 1,441 rooms to explore!</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>3–4 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">9:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Schönbrunn Zoo</div><div class="attraction-desc">World's oldest zoo (founded 1752). Giant pandas, big cats, elephants. Beautifully landscaped with excellent viewing areas.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>3–4 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">9:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Prater Giant Ferris Wheel</div><div class="attraction-desc">Historic 1897 observation wheel. Slow rotation, relaxing ride, panoramic views across Vienna. Iconic at sunset.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1.5 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Sunset</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">St. Stephen's Cathedral</div><div class="attraction-desc">Iconic Gothic cathedral with distinctive mosaic roof tiles. Climb the tower for panoramic city views.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1–2 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Spanish Riding School</div><div class="attraction-desc">Famous Lipizzan stallion training school. Elegant horse performances and training demonstrations. Book ahead.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1.5–2 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">Morning</span></div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">info</span>Logistics</div>
+    <div class="info-grid">
+      <div class="info-box" style="border-left:3px solid var(--vie);">
+        <div class="info-box-head" style="color:var(--vie);"><span class="material-icons-round">hotel</span>Where to Stay</div>
+        <div class="info-row"><span class="info-row-label">Type</span><span class="info-row-val">4-star or family apt</span></div>
+        <div class="info-row"><span class="info-row-label">Area</span><span class="info-row-val">Near Schönbrunn / centre</span></div>
+        <div class="info-row"><span class="info-row-label">Cost</span><span class="info-row-val">€280–350 / night</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--vie);">
+        <div class="info-box-head" style="color:var(--vie);"><span class="material-icons-round">flight_takeoff</span>Getting Here</div>
+        <div class="info-row"><span class="info-row-label">From</span><span class="info-row-val">Paris (CDG)</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~2.5 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$100–$180</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--vie);">
+        <div class="info-box-head" style="color:var(--vie);"><span class="material-icons-round">train</span>Next: Lucerne</div>
+        <div class="info-row"><span class="info-row-label">Transport</span><span class="info-row-val">Scenic train or flight</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">4 hrs / 1.5 hrs</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$100–$200</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">restaurant</span>Recommended Restaurants</div>
+    <div class="restaurant-grid">
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Bauer Stub'n</div><div class="restaurant-desc">Traditional Austrian cuisine in cozy setting. Schnitzel, strudel, hearty portions. Family-friendly and authentic.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Prater Garten</div><div class="restaurant-desc">Classic Viennese restaurant in beautiful beer garden. Relaxed atmosphere, traditional dishes, excellent for families.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Café Demel</div><div class="restaurant-desc">Famous pastry café since 1786. Legendary apple strudel and Sachertorte. Quintessential Vienna experience.</div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">map</span>Map</div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85473.53!2d16.3725!3d48.2093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d079e5136ca9f%3A0xfdc2d58a4a6d4a09!2sVienna%2C%20Austria!5e0!3m2!1sen!2sau!4v1" allowfullscreen="" loading="lazy" title="Vienna Map"></iframe>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">payments</span>Budget Breakdown</div>
+    <div class="budget-table-wrap">
+      <table class="budget-table">
+        <thead><tr><th>Category</th><th>Estimated (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Flights (Paris → Vienna)</td><td>$100–$180</td></tr>
+          <tr><td>Hotels (3 nights @ €280–350/night)</td><td>$930–$1,170</td></tr>
+          <tr><td>Attractions & Tours</td><td>$500–$750</td></tr>
+          <tr><td>Food & Dining</td><td>$500–$750</td></tr>
+          <tr><td>Transport</td><td>$100–$150</td></tr>
+          <tr class="total-row"><td><strong>Total — Vienna</strong></td><td><strong>$2,130–$3,000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ LUCERNE ═══════════════════════════ -->
+<section id="lucerne" class="city-section">
+  <div class="city-banner">
+    <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1200&auto=format&fit=crop&q=80" alt="Lucerne Swiss Alps" loading="lazy">
+    <div class="city-banner-overlay">
+      <div class="city-banner-text">
+        <div class="city-banner-eyebrow">Days 14–17 · Switzerland</div>
+        <div class="city-banner-title">Lucerne & Swiss Alps</div>
+        <div class="city-banner-chips">
+          <span class="chip">Mt. Pilatus</span>
+          <span class="chip">Chapel Bridge</span>
+          <span class="chip">Trümmelbach Falls</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-body">
+    <div class="meta-row">
+      <span class="meta-pill"><span class="material-icons-round">calendar_today</span>Days 14–17</span>
+      <span class="meta-pill"><span class="material-icons-round">hotel</span>4 nights</span>
+      <span class="meta-pill"><span class="material-icons-round">payments</span>Currency: CHF</span>
+      <span class="meta-pill"><span class="material-icons-round">language</span>German / French</span>
+    </div>
+    <p class="city-intro">Welcome to Rick Steves' #1 "wow moment" in Europe! The Swiss Alps deliver breathtaking scenery, thrilling mountain railways, and pristine lakes. Kids adore the cog trains, cable cars, and snow activities. Lucerne's charming Old Town and iconic Chapel Bridge complete the Alpine dream.</p>
+
+    <div class="sub-heading"><span class="material-icons-round">place</span>Top Attractions</div>
+    <div class="attractions-list">
+      <div class="attraction-card"><div class="attraction-name">Mt. Pilatus (Cogwheel Railway)</div><div class="attraction-desc">World's steepest cogwheel railway. Snow park at the summit. Cable car descent offers a completely different route — double the adventure!</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>Full day</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Early morning</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Chapel Bridge (Kapellbrücke)</div><div class="attraction-desc">Iconic wooden bridge built in 1333 with historical paintings. Beautiful at any time, magical at sunrise and sunset.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1 hr</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Sunrise / Sunset</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Lake Lucerne Cruise</div><div class="attraction-desc">Relaxing boat tour on pristine Alpine lake. Mountain reflections, fresh air, incredibly scenic. Covered by Swiss Travel Pass.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Afternoon</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Trümmelbach Falls</div><div class="attraction-desc">Waterfalls inside a mountain. Unique geological wonder — walkways take you right into the falls. Incredibly dramatic.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Interlaken & Lauterbrunnen Valley</div><div class="attraction-desc">Jaw-dropping valley views, hiking, paragliding, pristine meadows. A full-day excursion not to be missed.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>Full day</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Early morning</span></div></div>
+    </div>
+
+    <div class="info-box" style="border-left:3px solid var(--luc);margin-top:20px;background:#e8f5f0;">
+      <div class="info-box-head" style="color:var(--luc);"><span class="material-icons-round">lightbulb</span>Swiss Travel Pass Tip</div>
+      <div style="font-size:0.85rem;color:var(--ink-light);line-height:1.55;">Consider the <strong>Swiss Travel Pass</strong> for unlimited travel on trains, buses, and Lake Lucerne boats. Available for 3, 4, 8, or 15 days. Saves significant money on Mt. Pilatus and other railways. Book before arrival for best rates.</div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">info</span>Logistics</div>
+    <div class="info-grid">
+      <div class="info-box" style="border-left:3px solid var(--luc);">
+        <div class="info-box-head" style="color:var(--luc);"><span class="material-icons-round">hotel</span>Where to Stay</div>
+        <div class="info-row"><span class="info-row-label">Type</span><span class="info-row-val">Alpine chalet / 4-star</span></div>
+        <div class="info-row"><span class="info-row-label">Area</span><span class="info-row-val">Old Town / Interlaken</span></div>
+        <div class="info-row"><span class="info-row-label">Cost</span><span class="info-row-val">CHF 350–450 / night</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--luc);">
+        <div class="info-box-head" style="color:var(--luc);"><span class="material-icons-round">train</span>Getting Here</div>
+        <div class="info-row"><span class="info-row-label">From</span><span class="info-row-val">Vienna</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">4 hrs train / 1.5 hrs fly</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$100–$200</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--luc);">
+        <div class="info-box-head" style="color:var(--luc);"><span class="material-icons-round">flight_land</span>Next: Rome</div>
+        <div class="info-row"><span class="info-row-label">Transport</span><span class="info-row-val">Flight via Milan</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~1.5 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$120–$250</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">restaurant</span>Recommended Restaurants</div>
+    <div class="restaurant-grid">
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Gletschergarten</div><div class="restaurant-desc">Traditional Alpine cuisine with lake views. Fondue, raclette, hearty Swiss dishes. Family favourite.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Restaurant Balm</div><div class="restaurant-desc">Authentic Swiss food in cozy alpine setting. Local specialties, warm hospitality, perfect for families.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Fondue House</div><div class="restaurant-desc">Cheese fondue experience. Interactive dining where kids dip bread in melted cheese. Quintessential Swiss!</div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">map</span>Map</div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43542.34!2d8.3093!3d47.0502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ffa4ccf30b701%3A0xd5c36c1e73b6098e!2sLucerne%2C%20Switzerland!5e0!3m2!1sen!2sau!4v1" allowfullscreen="" loading="lazy" title="Lucerne Map"></iframe>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">payments</span>Budget Breakdown</div>
+    <div class="budget-table-wrap">
+      <table class="budget-table">
+        <thead><tr><th>Category</th><th>Estimated (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Flights/Train (Vienna → Lucerne)</td><td>$100–$200</td></tr>
+          <tr><td>Hotels (4 nights @ CHF 350–450/night)</td><td>$1,600–$2,000</td></tr>
+          <tr><td>Attractions & Mountain Railways</td><td>$600–$900</td></tr>
+          <tr><td>Food & Dining</td><td>$700–$1,000</td></tr>
+          <tr><td>Transport</td><td>$150–$250</td></tr>
+          <tr class="total-row"><td><strong>Total — Lucerne & Alps</strong></td><td><strong>$3,150–$4,350</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ ROME ═══════════════════════════ -->
+<section id="rome" class="city-section">
+  <div class="city-banner">
+    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&auto=format&fit=crop&q=80" alt="Colosseum Rome" loading="lazy">
+    <div class="city-banner-overlay">
+      <div class="city-banner-text">
+        <div class="city-banner-eyebrow">Days 18–22 · Italy · Grand Finale</div>
+        <div class="city-banner-title">Rome</div>
+        <div class="city-banner-chips">
+          <span class="chip">Colosseum</span>
+          <span class="chip">Vatican City</span>
+          <span class="chip">Trevi Fountain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="city-body">
+    <div class="meta-row">
+      <span class="meta-pill"><span class="material-icons-round">calendar_today</span>Days 18–22</span>
+      <span class="meta-pill"><span class="material-icons-round">hotel</span>5 nights</span>
+      <span class="meta-pill"><span class="material-icons-round">euro</span>Currency: Euro</span>
+      <span class="meta-pill"><span class="material-icons-round">language</span>Italian</span>
+    </div>
+    <p class="city-intro">The Eternal City is the grand finale to your adventure! Ancient wonders (Colosseum, Roman Forum), Vatican treasures, Trevi Fountain, and world-class Italian cuisine await. Golf-cart tours make sightseeing fun for families, and gelato breaks are mandatory. Rome is magical at sunset — don't miss it.</p>
+
+    <div class="sub-heading"><span class="material-icons-round">place</span>Top Attractions</div>
+    <div class="attractions-list">
+      <div class="attraction-card"><div class="attraction-name">Colosseum</div><div class="attraction-desc">Ancient amphitheater and gladiator arena. Audioguides captivate kids. Book skip-the-line tickets. Underground chambers visible.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">9:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Roman Forum</div><div class="attraction-desc">Ancient ruins spread across an archaeological site. Temples, marketplace, senator's buildings. Kids love the history hunt.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>2–3 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">10:00 AM</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Vatican City & St. Peter's</div><div class="attraction-desc">St. Peter's Basilica, Sistine Chapel, Vatican Museums. Book early-morning slot to avoid crowds. Dress code applies.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>4–5 hrs</span><span class="tag"><span class="material-icons-round">group</span>Age 5+</span><span class="tag"><span class="material-icons-round">alarm">Early morning</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Trevi Fountain</div><div class="attraction-desc">Baroque masterpiece. Throw a coin to ensure your return to Rome. Magically illuminated at night. Less crowded in the evening.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>1–2 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Evening</span></div></div>
+      <div class="attraction-card"><div class="attraction-name">Golf Cart City Tour</div><div class="attraction-desc">Covers Colosseum, Trevi, Pantheon and major sites efficiently. Fun and relaxing alternative to walking all day.</div><div class="attraction-tags"><span class="tag"><span class="material-icons-round">schedule</span>3–4 hrs</span><span class="tag"><span class="material-icons-round">group</span>All ages</span><span class="tag"><span class="material-icons-round">alarm">Morning</span></div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">info</span>Logistics</div>
+    <div class="info-grid">
+      <div class="info-box" style="border-left:3px solid var(--rom);">
+        <div class="info-box-head" style="color:var(--rom);"><span class="material-icons-round">hotel</span>Where to Stay</div>
+        <div class="info-row"><span class="info-row-label">Type</span><span class="info-row-val">4-star or family apt</span></div>
+        <div class="info-row"><span class="info-row-label">Area</span><span class="info-row-val">Spanish Steps / Pantheon</span></div>
+        <div class="info-row"><span class="info-row-label">Cost</span><span class="info-row-val">€330–450 / night</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--rom);">
+        <div class="info-box-head" style="color:var(--rom);"><span class="material-icons-round">flight_takeoff</span>Getting Here</div>
+        <div class="info-row"><span class="info-row-label">From</span><span class="info-row-val">Lucerne (via Milan)</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">~1.5 hours</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$120–$250</span></div>
+      </div>
+      <div class="info-box" style="border-left:3px solid var(--rom);">
+        <div class="info-box-head" style="color:var(--rom);"><span class="material-icons-round">home</span>Returning Home</div>
+        <div class="info-row"><span class="info-row-label">To</span><span class="info-row-val">Sydney (SYD)</span></div>
+        <div class="info-row"><span class="info-row-label">Duration</span><span class="info-row-val">14–16 hrs (1 stop)</span></div>
+        <div class="info-row"><span class="info-row-label">Cost (family)</span><span class="info-row-val">$1,200–$1,800</span></div>
+      </div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">restaurant</span>Recommended Restaurants</div>
+    <div class="restaurant-grid">
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Armando al Pantheon</div><div class="restaurant-desc">Roman classics, family-run since 1961. Cacio e pepe, carbonara, authentic preparation. Casual and welcoming.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Flavio al Velavevodetto</div><div class="restaurant-desc">Traditional Roman cuisine in cozy trattoria. Generous portions, friendly staff, great for families.</div></div>
+      <div class="restaurant-card"><div class="restaurant-name"><span class="material-icons-round">restaurant</span>Gelato di San Crispino</div><div class="restaurant-desc">Widely considered Rome's best gelato. Natural flavours, perfect scoops. A must-visit every single day!</div></div>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">map</span>Map</div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94998.28!2d12.4964!3d41.9029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6196f9928edd%3A0xb90f770693656e38!2sRome%2C%20Italy!5e0!3m2!1sen!2sau!4v1" allowfullscreen="" loading="lazy" title="Rome Map"></iframe>
+    </div>
+
+    <div class="sub-heading"><span class="material-icons-round">payments</span>Budget Breakdown</div>
+    <div class="budget-table-wrap">
+      <table class="budget-table">
+        <thead><tr><th>Category</th><th>Estimated (AUD)</th></tr></thead>
+        <tbody>
+          <tr><td>Flights (Lucerne → Rome)</td><td>$120–$250</td></tr>
+          <tr><td>Hotels (5 nights @ €330–450/night)</td><td>$1,650–$2,250</td></tr>
+          <tr><td>Attractions & Tours</td><td>$800–$1,200</td></tr>
+          <tr><td>Food & Dining</td><td>$700–$1,000</td></tr>
+          <tr><td>Transport</td><td>$150–$250</td></tr>
+          <tr class="total-row"><td><strong>Total — Rome</strong></td><td><strong>$3,420–$4,950</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ CHECKLIST ═══════════════════════════ -->
+<section id="checklist" class="city-section checklist-section">
+  <div class="section">
+    <p class="section-label">Be Prepared</p>
+    <h2 class="section-title">Trip Checklist</h2>
+    <p style="color:var(--ink-light);font-size:0.9rem;margin-bottom:28px;">Your progress is saved automatically in the browser.</p>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title"><span class="material-icons-round">event_available</span>6–8 Weeks Before</div>
+      <div class="checklist-items">
+        <label class="checklist-item"><input type="checkbox" id="c1" onchange="saveChecklist()"><span>Book international flights Sydney ↔ Barcelona / Rome</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c2" onchange="saveChecklist()"><span>Book Harry Potter Studio Tour tickets (6+ weeks required)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c3" onchange="saveChecklist()"><span>Book Disneyland Paris tickets</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c4" onchange="saveChecklist()"><span>Reserve Eurostar train (London → Paris)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c5" onchange="saveChecklist()"><span>Book hotels in all 6 cities</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c6" onchange="saveChecklist()"><span>Purchase travel insurance</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c7" onchange="saveChecklist()"><span>Check passport expiration (6 months beyond trip end)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c8" onchange="saveChecklist()"><span>Check visa requirements (EU, UK, Switzerland)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c9" onchange="saveChecklist()"><span>Consider travel adapters & converters</span></label>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title"><span class="material-icons-round">calendar_month</span>2–4 Weeks Before</div>
+      <div class="checklist-items">
+        <label class="checklist-item"><input type="checkbox" id="c10" onchange="saveChecklist()"><span>Book Sagrada Família tickets (Barcelona)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c11" onchange="saveChecklist()"><span>Book Tower of London & Tower Bridge (London)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c12" onchange="saveChecklist()"><span>Book Vatican & Sistine Chapel tours (Rome)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c13" onchange="saveChecklist()"><span>Book Mt. Pilatus cogwheel railway (Lucerne)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c14" onchange="saveChecklist()"><span>Reserve restaurant tables at special dining spots</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c15" onchange="saveChecklist()"><span>Download offline maps (Google Maps)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c16" onchange="saveChecklist()"><span>Set up international phone plan / SIM card</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c17" onchange="saveChecklist()"><span>Book Swiss Travel Pass (if doing mountains)</span></label>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title"><span class="material-icons-round">luggage</span>1 Week Before</div>
+      <div class="checklist-items">
+        <label class="checklist-item"><input type="checkbox" id="c18" onchange="saveChecklist()"><span>Pack luggage & test carry-on limits</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c19" onchange="saveChecklist()"><span>Print or screenshot all booking confirmations</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c20" onchange="saveChecklist()"><span>Notify credit card companies of travel dates</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c21" onchange="saveChecklist()"><span>Make copies of important documents (passport, ID)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c22" onchange="saveChecklist()"><span>Check weather & pack appropriate clothing</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c23" onchange="saveChecklist()"><span>Arrange airport transfers or book taxis in advance</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c24" onchange="saveChecklist()"><span>Set up emergency contact list (embassy, hotels)</span></label>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title"><span class="material-icons-round">backpack</span>What to Pack</div>
+      <div class="checklist-items">
+        <label class="checklist-item"><input type="checkbox" id="c25" onchange="saveChecklist()"><span>Comfortable walking shoes (break them in first)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c26" onchange="saveChecklist()"><span>Lightweight jacket & layers (June in Europe = variable)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c27" onchange="saveChecklist()"><span>Swimsuit (beaches & hotel pools)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c28" onchange="saveChecklist()"><span>Sunscreen & sunglasses</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c29" onchange="saveChecklist()"><span>Travel-size toiletries (under 100ml for carry-on)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c30" onchange="saveChecklist()"><span>Medications & first aid kit</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c31" onchange="saveChecklist()"><span>Phone charger & international adapter</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c32" onchange="saveChecklist()"><span>Travel pillow & eye mask (for flights)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c33" onchange="saveChecklist()"><span>Portable phone charger (power banks)</span></label>
+      </div>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title"><span class="material-icons-round">child_care</span>For the Kids</div>
+      <div class="checklist-items">
+        <label class="checklist-item"><input type="checkbox" id="c34" onchange="saveChecklist()"><span>Activity books & coloured pencils (flight entertainment)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c35" onchange="saveChecklist()"><span>Download movies/shows for long flights</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c36" onchange="saveChecklist()"><span>Comfortable travel clothing (easy to move in)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c37" onchange="saveChecklist()"><span>Snacks (dried fruit, nuts, granola bars)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c38" onchange="saveChecklist()"><span>Travel journal & pens (document memories daily)</span></label>
+        <label class="checklist-item"><input type="checkbox" id="c39" onchange="saveChecklist()"><span>Comfortable headphones (movies, music, language apps)</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ BUDGET SUMMARY ═══════════════════════════ -->
+<section id="budget" class="city-section budget-summary">
+  <div class="section">
+    <p class="section-label">Family of 4 · Mid-Range</p>
+    <h2 class="section-title">Complete Trip Budget</h2>
+
+    <div class="budget-grand-grid">
+      <div class="budget-city-card">
+        <div class="budget-city-name">Barcelona</div>
+        <div class="budget-city-amt">$3,250–$4,650</div>
+        <div class="budget-city-nights">3 nights</div>
+      </div>
+      <div class="budget-city-card">
+        <div class="budget-city-name">London</div>
+        <div class="budget-city-amt">$2,830–$4,100</div>
+        <div class="budget-city-nights">4 nights</div>
+      </div>
+      <div class="budget-city-card">
+        <div class="budget-city-name">Paris</div>
+        <div class="budget-city-amt">$2,840–$4,110</div>
+        <div class="budget-city-nights">3 nights</div>
+      </div>
+      <div class="budget-city-card">
+        <div class="budget-city-name">Vienna</div>
+        <div class="budget-city-amt">$2,130–$3,000</div>
+        <div class="budget-city-nights">3 nights</div>
+      </div>
+      <div class="budget-city-card">
+        <div class="budget-city-name">Lucerne & Alps</div>
+        <div class="budget-city-amt">$3,150–$4,350</div>
+        <div class="budget-city-nights">4 nights</div>
+      </div>
+      <div class="budget-city-card">
+        <div class="budget-city-name">Rome</div>
+        <div class="budget-city-amt">$3,420–$4,950</div>
+        <div class="budget-city-nights">5 nights</div>
+      </div>
+    </div>
+
+    <div class="budget-grand-total">
+      <div>
+        <div class="budget-grand-label">Grand Total — 22 Days</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:4px;">All flights, hotels, food, activities & transport</div>
+      </div>
+      <div class="budget-grand-val">$17,620–$25,160</div>
+    </div>
+
+    <div class="budget-tips">
+      <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.35);margin-bottom:12px;">Money-Saving Tips</div>
+      <div class="budget-tip-row"><span class="material-icons-round">savings</span>Use Airbnb apartments to cook some meals and reduce by 20–30%</div>
+      <div class="budget-tip-row"><span class="material-icons-round">flight</span>Fly budget airlines (Ryanair, EasyJet) for inter-Europe legs</div>
+      <div class="budget-tip-row"><span class="material-icons-round">confirmation_number</span>Museum passes often offer skip-the-line access plus discounts</div>
+      <div class="budget-tip-row"><span class="material-icons-round">restaurant</span>Eat lunch as your main meal — often significantly cheaper than dinner</div>
+      <div class="budget-tip-row"><span class="material-icons-round">park</span>Free activities: parks, walking tours, street performances, beaches</div>
+    </div>
+  </div>
+</section>
+
+<div class="city-divider"></div>
+
+<!-- ═══════════════════════════ TIPS ═══════════════════════════ -->
+<section class="city-section">
+  <div class="section">
+    <p class="section-label">Expert Advice</p>
+    <h2 class="section-title">Final Notes & Travel Tips</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-card-head"><span class="material-icons-round">directions_walk</span>Pacing Strategy</div>
+        <p>Follow the proven formula: mornings for active sightseeing, afternoons for parks and rest. Kids (and parents!) need downtime. A tired, overstimulated child makes for miserable travel. Rest days are non-negotiable.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-head"><span class="material-icons-round">luggage</span>Luggage</div>
+        <p>With 6 cities in 22 days, pack light. Use 1 medium checked bag + 1 carry-on per person. Duffel bags are easier than roller bags for multiple moves.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-head"><span class="material-icons-round">photo_camera</span>Photography & Memories</div>
+        <p>Encourage kids to keep a travel journal with drawings and stickers. Take one family photo per day. These simple habits create lifelong memories — don't get so focused on photos that you miss the moment.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-head"><span class="material-icons-round">security</span>Safety</div>
+        <p>Know your hotel's address in the local language. Save emergency embassy contact numbers. Teach kids your phone number. Use hotel business cards to find your way back. Trust your instincts.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-head"><span class="material-icons-round">payments</span>Currency & Payments</div>
+        <p>EU countries use Euro. UK uses Pounds Sterling. Switzerland uses Swiss Francs. Use ATMs for cash; most places accept credit cards. Notify your bank of travel dates to avoid card blocks.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-card-head"><span class="material-icons-round">wb_sunny</span>Best Time to Visit</div>
+        <p>June is ideal: warm but not scorching, fewer crowds than July/August, longer daylight hours. Book major attractions 4–6 weeks ahead to secure tickets and time slots.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;padding:28px;background:var(--ink);border-radius:12px;text-align:center;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,4vw,1.8rem);font-weight:700;color:#fff;line-height:1.3;">"The memories created — watching kids' eyes light up at Sagrada Família, riding the Mt. Pilatus cogwheel railway, tossing coins into Trevi Fountain — these are the moments that matter."</p>
+      <p style="margin-top:16px;font-size:0.82rem;color:rgba(255,255,255,0.4);font-style:italic;">Embrace imperfection. Stay flexible. Enjoy every step.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <strong>Europe Family Adventure — 22 Days</strong><br>
+  Barcelona · London · Paris · Vienna · Lucerne · Rome<br><br>
+  <span>Family of 4 · Mid-range budget · June travel · All prices in AUD (approx.)</span>
+</footer>
+
+<script>
+  // ─── CHECKLIST ───
+  function saveChecklist() {
+    const state = {};
+    document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(cb => {
+      state[cb.id] = cb.checked;
+    });
+    try { localStorage.setItem('euroTrip2025', JSON.stringify(state)); } catch(e){}
+    updateChecklistUI();
+  }
+
+  function loadChecklist() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('euroTrip2025') || '{}');
+      document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(cb => {
+        if (saved[cb.id]) cb.checked = true;
+      });
+    } catch(e){}
+    updateChecklistUI();
+  }
+
+  function updateChecklistUI() {
+    document.querySelectorAll('.checklist-item').forEach(item => {
+      const cb = item.querySelector('input[type="checkbox"]');
+      item.classList.toggle('checked', cb && cb.checked);
+    });
+  }
+
+  // ─── ACTIVE NAV ───
+  function updateActiveNav() {
+    const sections = document.querySelectorAll('.city-section[id]');
+    const navLinks = document.querySelectorAll('#top-nav a');
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 80) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('load', loadChecklist);
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+</script>
+</body>
+</html>
